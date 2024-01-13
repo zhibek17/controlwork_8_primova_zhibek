@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Review List{% endblock %}
+
+{% block content %}
+  <h2>Review List</h2>
+  {% for review in reviews %}
+    <div class="review">
+      <p><strong>{{ review.author.username }}</strong> - {{ review.created_at }}</p>
+      <p>{{ review.text }}</p>
+      <p>Rating: {{ review.rating }}</p>
+      {% if review.moderated %}
+        <p>Status: Moderated</p>
+      {% else %}
+        <p>Status: Unmoderated</p>
+      {% endif %}
+      <hr>
+    </div>
+  {% endfor %}
+{% endblock %}

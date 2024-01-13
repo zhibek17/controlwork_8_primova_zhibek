@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Product View{% endblock %}
+
+{% load static %}  {# Загрузка тегов статических файлов #}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="Product Image" class="img-fluid" style="max-width: 100%;">
+            {% else %}
+                <img src="{% static 'placeholder.jpg' %}" alt="Placeholder" class="img-fluid" style="max-width: 100%;">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-box" style="width: 100%;">
+                <div class="card-body">
+                    <h2 class="card-text">Name: {{ product.name }}</h2>
+                    <h6 class="card-text">Category: {{ product.category }}</h6>
+                    <h5 class="card-text">Description: {{ product.description }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

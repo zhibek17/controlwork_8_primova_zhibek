@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .product-card {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .product-card img {
+        width: 50%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-card .card-body {
+        padding: 10px;
+        width: 50%;
+    }
+
+    .card-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .category {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .card-text {
+        font-size: 15px;
+        text-decoration: none;
+    }
+</style>
+
+<div class="product_container row justify-content-around">
+    {% for product in products %}
+        <div class="col-md-6">
+            <div class="product-card">
+                <img src="{{ product.image }}" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="category">{{ product.category }}</h6>
+                    <h2 class="card-text">{{ product.description }}</h2>
+                    <a href="{% url 'product_detail' product.id %}" class="card-text">see more >></a><br>
+                    <a href="{% url 'product_edit' product.id %}" class="card-text">update >></a><br>
+                    <a href="{% url 'product_delete' product.id %}" class="card-text">delete >></a>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
